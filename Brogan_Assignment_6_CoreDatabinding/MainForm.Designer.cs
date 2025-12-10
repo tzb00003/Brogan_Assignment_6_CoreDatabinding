@@ -33,28 +33,35 @@
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ageDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            isDeletedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             personBindingSource = new BindingSource(components);
             saveButton = new Button();
             ageTextBox = new TextBox();
             nameTextBox = new TextBox();
             deleteButton = new Button();
             addButton = new Button();
+            searchTextBox = new TextBox();
+            searchLabel = new Label();
+            personContextBindingSource = new BindingSource(components);
+            showDeletedCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personContextBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, ageDataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, ageDataGridViewTextBoxColumn, isDeletedDataGridViewCheckBoxColumn });
             dataGridView1.DataSource = personBindingSource;
-            dataGridView1.Location = new Point(79, 57);
+            dataGridView1.Location = new Point(12, 12);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(586, 225);
+            dataGridView1.Size = new Size(533, 222);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -80,41 +87,51 @@
             ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
             ageDataGridViewTextBoxColumn.Width = 150;
             // 
+            // isDeletedDataGridViewCheckBoxColumn
+            // 
+            isDeletedDataGridViewCheckBoxColumn.DataPropertyName = "IsDeleted";
+            isDeletedDataGridViewCheckBoxColumn.HeaderText = "IsDeleted";
+            isDeletedDataGridViewCheckBoxColumn.MinimumWidth = 8;
+            isDeletedDataGridViewCheckBoxColumn.Name = "isDeletedDataGridViewCheckBoxColumn";
+            isDeletedDataGridViewCheckBoxColumn.Width = 150;
+            // 
             // personBindingSource
             // 
             personBindingSource.DataSource = typeof(Person);
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(553, 305);
+            saveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            saveButton.Location = new Point(421, 299);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(112, 34);
-            saveButton.TabIndex = 1;
+            saveButton.TabIndex = 3;
             saveButton.Text = "&Save";
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += saveButton_Click;
             // 
             // ageTextBox
             // 
-            ageTextBox.DataBindings.Add(new Binding("DataContext", personBindingSource, "Age", true));
+            ageTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             ageTextBox.DataBindings.Add(new Binding("Text", personBindingSource, "Age", true));
-            ageTextBox.Location = new Point(374, 307);
+            ageTextBox.Location = new Point(219, 301);
             ageTextBox.Name = "ageTextBox";
             ageTextBox.Size = new Size(150, 31);
             ageTextBox.TabIndex = 2;
             // 
             // nameTextBox
             // 
-            nameTextBox.DataBindings.Add(new Binding("DataContext", personBindingSource, "Name", true));
-            nameTextBox.DataBindings.Add(new Binding("Text", personBindingSource, "Age", true));
-            nameTextBox.Location = new Point(164, 308);
+            nameTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            nameTextBox.DataBindings.Add(new Binding("Text", personBindingSource, "Name", true));
+            nameTextBox.Location = new Point(32, 302);
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(150, 31);
-            nameTextBox.TabIndex = 3;
+            nameTextBox.TabIndex = 1;
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(553, 355);
+            deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            deleteButton.Location = new Point(421, 349);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(112, 34);
             deleteButton.TabIndex = 4;
@@ -124,7 +141,8 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(553, 404);
+            addButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            addButton.Location = new Point(421, 398);
             addButton.Name = "addButton";
             addButton.Size = new Size(112, 34);
             addButton.TabIndex = 5;
@@ -132,11 +150,46 @@
             addButton.UseVisualStyleBackColor = true;
             addButton.Click += addButton_Click;
             // 
+            // searchTextBox
+            // 
+            searchTextBox.Location = new Point(564, 115);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(306, 31);
+            searchTextBox.TabIndex = 7;
+            searchTextBox.TextChanged += searchTextBox_TextChanged;
+            // 
+            // searchLabel
+            // 
+            searchLabel.AutoSize = true;
+            searchLabel.Location = new Point(570, 86);
+            searchLabel.Name = "searchLabel";
+            searchLabel.Size = new Size(68, 25);
+            searchLabel.TabIndex = 6;
+            searchLabel.Text = "&Search:";
+            // 
+            // personContextBindingSource
+            // 
+            personContextBindingSource.DataSource = typeof(PersonContext);
+            // 
+            // showDeletedCheckBox
+            // 
+            showDeletedCheckBox.AutoSize = true;
+            showDeletedCheckBox.Location = new Point(564, 169);
+            showDeletedCheckBox.Name = "showDeletedCheckBox";
+            showDeletedCheckBox.Size = new Size(148, 29);
+            showDeletedCheckBox.TabIndex = 8;
+            showDeletedCheckBox.Text = "Show Deleted";
+            showDeletedCheckBox.UseVisualStyleBackColor = true;
+            showDeletedCheckBox.CheckedChanged += showDeletedCheckBox_CheckedChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(919, 450);
+            Controls.Add(showDeletedCheckBox);
+            Controls.Add(searchLabel);
+            Controls.Add(searchTextBox);
             Controls.Add(addButton);
             Controls.Add(deleteButton);
             Controls.Add(nameTextBox);
@@ -145,8 +198,10 @@
             Controls.Add(dataGridView1);
             Name = "MainForm";
             Text = "Form1";
+            Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personContextBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -154,14 +209,19 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private BindingSource personBindingSource;
         private Button saveButton;
         private TextBox ageTextBox;
         private TextBox nameTextBox;
         private Button deleteButton;
         private Button addButton;
+        private TextBox searchTextBox;
+        private Label searchLabel;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn isDeletedDataGridViewCheckBoxColumn;
+        private BindingSource personContextBindingSource;
+        private CheckBox showDeletedCheckBox;
     }
 }

@@ -14,6 +14,8 @@ namespace Brogan_Assignment_6_CoreDatabinding
 
         public int Age  { get; set; }
 
+        public bool IsDeleted { get; set; } = false;
+
         public Person()
 
             { }
