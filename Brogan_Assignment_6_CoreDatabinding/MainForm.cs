@@ -33,16 +33,27 @@ namespace Brogan_Assignment_6_CoreDatabinding
             ApplyFilter();
         }
 
+
         private void addButton_Click(object sender, EventArgs e)
         {
-            //Put Dialog code here
-            Person p = new Person();
-            p.Name = "New Person";
-            p.Age = 50;
-            db.Add(p);
-            db.SaveChanges();
-            ApplyFilter();
+            var add = new AddDialog();
+
+            // Show the modal dialog and proceed only if user clicked OK
+            if (add.ShowDialog() == DialogResult.OK)
+            {
+                var p = new Person
+                {
+                    Name = add.PersonName,   // renamed property
+                    Age = add.Age,
+                    IsDeleted = false
+                };
+
+                db.Add(p);          // or db.People.Add(p); depending on your context
+                db.SaveChanges();
+                ApplyFilter();
+            }
         }
+
 
         private void ApplyFilter()
         {
