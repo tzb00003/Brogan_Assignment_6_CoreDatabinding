@@ -4,17 +4,18 @@ namespace Brogan_Assignment_6_CoreDatabinding
 {
     public partial class MainForm : Form
     {
-        private readonly PersonContext db = new PersonContext();
-        public MainForm()
+        private readonly IPersonGetter db;
+        public MainForm(IPersonGetter personGetter)
         {
+            db = personGetter;
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            db.Database.EnsureCreated();
-            db.People.Load();
-            personBindingSource.DataSource = db.People.Local.ToBindingList();
+            
+            //personBindingSource.DataSource = db.People.Local.ToBindingList();
+            ApplyFilter();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -38,28 +39,14 @@ namespace Brogan_Assignment_6_CoreDatabinding
             Person p = new Person();
             p.Name = "New Person";
             p.Age = 50;
-            db.People.Add(p);
+            db.Add(p);
             db.SaveChanges();
             ApplyFilter();
         }
 
         private void ApplyFilter()
         {
-            if (showDeletedCheckBox.Checked)
-            {
-                personBindingSource.DataSource = db.People.Local
-                    .Where(person => (person.Name! ?? "").ToLower()!.Contains(searchTextBox.Text.ToLower()))
-                    .OrderBy(person => person.Age)
-                    .ToList();
-            }
-            else
-            {
-                personBindingSource.DataSource = db.People.Local
-                    .Where(person => (person.Name! ?? "").ToLower()!.Contains(searchTextBox.Text.ToLower())
-                    && person.IsDeleted == false)
-                    .OrderBy(person => person.Age)
-                    .ToList();
-            }
+           personBindingSource.DataSource = db.GetPeople(searchTextBox.Text, showDeletedCheckBox.Checked);
         }
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {

@@ -30,10 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            ageDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            isDeletedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             personBindingSource = new BindingSource(components);
             saveButton = new Button();
             ageTextBox = new TextBox();
@@ -44,6 +40,10 @@
             searchLabel = new Label();
             personContextBindingSource = new BindingSource(components);
             showDeletedCheckBox = new CheckBox();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ageDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            isDeletedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personContextBindingSource).BeginInit();
@@ -62,38 +62,6 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(533, 222);
             dataGridView1.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 8;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // ageDataGridViewTextBoxColumn
-            // 
-            ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
-            ageDataGridViewTextBoxColumn.HeaderText = "Age";
-            ageDataGridViewTextBoxColumn.MinimumWidth = 8;
-            ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
-            ageDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // isDeletedDataGridViewCheckBoxColumn
-            // 
-            isDeletedDataGridViewCheckBoxColumn.DataPropertyName = "IsDeleted";
-            isDeletedDataGridViewCheckBoxColumn.HeaderText = "IsDeleted";
-            isDeletedDataGridViewCheckBoxColumn.MinimumWidth = 8;
-            isDeletedDataGridViewCheckBoxColumn.Name = "isDeletedDataGridViewCheckBoxColumn";
-            isDeletedDataGridViewCheckBoxColumn.Width = 150;
             // 
             // personBindingSource
             // 
@@ -182,6 +150,39 @@
             showDeletedCheckBox.UseVisualStyleBackColor = true;
             showDeletedCheckBox.CheckedChanged += showDeletedCheckBox_CheckedChanged;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 8;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.Visible = false;
+            idDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            ageDataGridViewTextBoxColumn.MinimumWidth = 8;
+            ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            ageDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // isDeletedDataGridViewCheckBoxColumn
+            // 
+            isDeletedDataGridViewCheckBoxColumn.DataPropertyName = "IsDeleted";
+            isDeletedDataGridViewCheckBoxColumn.HeaderText = "IsDeleted";
+            isDeletedDataGridViewCheckBoxColumn.MinimumWidth = 8;
+            isDeletedDataGridViewCheckBoxColumn.Name = "isDeletedDataGridViewCheckBoxColumn";
+            isDeletedDataGridViewCheckBoxColumn.Width = 150;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -217,11 +218,11 @@
         private Button addButton;
         private TextBox searchTextBox;
         private Label searchLabel;
+        private BindingSource personContextBindingSource;
+        private CheckBox showDeletedCheckBox;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn isDeletedDataGridViewCheckBoxColumn;
-        private BindingSource personContextBindingSource;
-        private CheckBox showDeletedCheckBox;
     }
 }
